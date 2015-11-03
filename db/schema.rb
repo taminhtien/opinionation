@@ -17,13 +17,19 @@ ActiveRecord::Schema.define(version: 20151103041956) do
   enable_extension "plpgsql"
 
   create_table "opinions", force: :cascade do |t|
-    t.string  "content"
-    t.boolean "agree"
-    t.integer "topic_id"
+    t.string   "content"
+    t.boolean  "agree"
+    t.integer  "topic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
+  add_index "opinions", ["topic_id"], name: "index_opinions_on_topic_id", using: :btree
+
   create_table "topics", force: :cascade do |t|
-    t.string "content"
+    t.string   "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

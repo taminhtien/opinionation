@@ -3,9 +3,9 @@ class CreateOpinions < ActiveRecord::Migration
     create_table :opinions do |t|
     	t.string :content
     	t.boolean :agree
-    	t.references :topic
+    	t.references :topic, index: true
 
-    	t.timestamp
+    	t.timestamps
     end
   end
 end
