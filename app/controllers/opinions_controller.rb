@@ -10,7 +10,7 @@ class OpinionsController < ApplicationController
 			mark_topic_as_completed
 			redirect_to_next_topic
 		else
-			render 'new'
+			render :new
 		end
 	end
 
@@ -36,7 +36,6 @@ class OpinionsController < ApplicationController
 		def opinion_params
 			params.require(:opinion)
 				.permit(:content, :agree)
-				.merge!(topic_id: topic_id)
 		end
 
 		def completed_topics
@@ -53,7 +52,8 @@ class OpinionsController < ApplicationController
 
 		def redirect_to_next_topic
 			next_topic = Topic.next_incomplete_topic(completed_topics)
-			if next_topic
+
+			if next_topic.present?
 				redirect_to new_topic_opinion_url(topic_id: next_topic.id)
 			else
 				redirect_to thank_you_opinions_url

@@ -18,22 +18,23 @@ RSpec.describe OpinionsController, type: :controller do
 			expect(assigns(:opinion)).not_to be nil
 		end
 
-		context 'Topic has been completed' do
-			let!(:next_topic) { create(:topic) }
+		context 'A topic has been completed' do
 			before { session[:completed_topics] = [topic.id] }
-
-			it 'returns next topic' do
-				do_request
-				expect(response).to redirect_to new_topic_opinion_url(topic_id: next_topic)	
+			
+			context 'Topic has been completed' do
+				let!(:next_topic) { create(:topic) }
+				
+				it 'returns next topic' do
+					do_request
+					expect(response).to redirect_to new_topic_opinion_url(topic_id: next_topic)	
+				end
 			end
-		end
 
-		context 'All topics completed' do
-			before { session[:completed_topics] = [topic.id] }
-
-			it 'returns thank_you page' do
-				do_request
-				expect(response).to redirect_to thank_you_opinions_url
+			context 'All topics completed' do
+				it 'returns thank_you page' do
+					do_request
+					expect(response).to redirect_to thank_you_opinions_url
+				end
 			end
 		end
 	end

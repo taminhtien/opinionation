@@ -1,0 +1,41 @@
+#opinions-new {
+	.topic {
+		.topic-no {
+			background-color: $yellow-color;
+			color: #fff;
+			text-align: center;
+			border-radius: 2px;
+			padding: 5px 0;
+			width: 100px;
+			margin: 0 auto;
+		}
+		.topic-content {
+			text-align: center;
+		}
+	}
+
+	.opinion-form {
+		.opinion_agree {
+			text-align: center;
+		}
+
+		.radio {
+			display: inline;
+			padding-right: 10px;
+		}
+
+		.opinion_content {
+			padding-top: 10px;
+			#opinion_content {
+				max-width: 100%;
+				width: 100%;
+				height: 100px;
+				padding: 5px;
+			}
+		}
+		
+		.opinion-button {
+			width: 200px;
+		}		
+	}
+}
