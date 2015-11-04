@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20151103041956) do
   enable_extension "plpgsql"
 
   create_table "opinions", force: :cascade do |t|
-    t.string   "content"
+    t.text     "content"
     t.boolean  "agree"
     t.integer  "topic_id"
     t.datetime "created_at"

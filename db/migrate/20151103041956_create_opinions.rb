@@ -1,7 +1,7 @@
 class CreateOpinions < ActiveRecord::Migration
   def change
     create_table :opinions do |t|
-    	t.string :content
+    	t.text :content
     	t.boolean :agree
     	t.references :topic, index: true
 
