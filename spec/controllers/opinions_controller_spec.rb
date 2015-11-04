@@ -88,4 +88,18 @@ RSpec.describe OpinionsController, type: :controller do
 			expect(response).to render_template :thank_you
 		end
 	end
+
+	describe '#clear_session' do
+		def do_request
+			get :new, topic_id: topic.id
+		end
+
+		let(:topic) { create(:topic) }
+		
+		it 'returns next topic' do
+			do_request
+			get :clear_session
+			expect(response).to redirect_to new_topic_opinion_url(topic_id: topic.id)
+		end
+	end
 end

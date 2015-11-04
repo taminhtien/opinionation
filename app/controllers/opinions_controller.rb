@@ -14,6 +14,11 @@ class OpinionsController < ApplicationController
 		end
 	end
 
+	def clear_session
+		session[:completed_topics] = nil
+		redirect_to_next_topic
+	end
+
 	private
 
 		def current_topic
