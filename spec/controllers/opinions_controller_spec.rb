@@ -12,6 +12,20 @@ RSpec.describe OpinionsController, type: :controller do
 			do_request
 			expect(response).to render_template :new
 		end
+
+		it 'has an opinion variable' do
+			do_request
+			expect(assigns(:opinion)).not_to be nil
+		end
+
+		context 'Topic has been completed' do
+			let!(:next_topic) { create(:topic) }
+			before { session[:completed_topics] = [topic.id] }
+			it 'returns next topic' do
+				do_request
+				expect(response).to redirect_to new_topic_opinion_url(topic_id: next_topic)	
+			end
+		end
 	end
 
 	describe '#create' do

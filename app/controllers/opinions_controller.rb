@@ -1,10 +1,11 @@
 class OpinionsController < ApplicationController
+	before_action :redirect_if_topic_is_conpleted, only: [:new]
 	def new
+		@opinion = current_topic.opinions.new
 	end
 
 	def create
-		topic = Topic.find(topic_id)
-		@opinion = topic.opinions.build(opinion_params)
+		@opinion = current_topic.opinions.build(opinion_params)
 		if @opinion.save
 			mark_topic_as_completed
 			redirect_to_next_topic
@@ -13,10 +14,15 @@ class OpinionsController < ApplicationController
 		end
 	end
 
-	def thank_you
-	end
-
 	private
+
+		def current_topic
+			if topic_id.present?
+				Topic.find(topic_id)
+			else
+				Topic.first
+			end
+		end
 
 		def topic_id
 			params[:topic_id]
@@ -34,6 +40,10 @@ class OpinionsController < ApplicationController
 
 		def mark_topic_as_completed
 			completed_topics << topic_id
+		end
+
+		def redirect_if_topic_is_conpleted
+			redirect_to_next_topic if completed_topics.include? current_topic.id
 		end
 
 		def redirect_to_next_topic
