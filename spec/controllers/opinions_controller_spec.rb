@@ -43,5 +43,18 @@ RSpec.describe OpinionsController, type: :controller do
 				end
 			end
 		end
+
+		context 'Failure' do
+			let(:params) { attributes_for(:opinion, content: '') }
+			
+			it 'does not save an opinion' do
+				expect { do_request }.not_to change(Opinion, :count)
+			end
+
+			it 'shows the new form' do
+				do_request
+				expect(response).to render_template :new
+			end
+		end
 	end
 end
