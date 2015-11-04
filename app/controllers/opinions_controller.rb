@@ -39,7 +39,7 @@ class OpinionsController < ApplicationController
 		end
 
 		def mark_topic_as_completed
-			completed_topics << topic_id
+			completed_topics << topic_id.to_i
 		end
 
 		def redirect_if_topic_is_conpleted

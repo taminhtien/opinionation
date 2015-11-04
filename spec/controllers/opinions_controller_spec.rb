@@ -21,9 +21,19 @@ RSpec.describe OpinionsController, type: :controller do
 		context 'Topic has been completed' do
 			let!(:next_topic) { create(:topic) }
 			before { session[:completed_topics] = [topic.id] }
+
 			it 'returns next topic' do
 				do_request
 				expect(response).to redirect_to new_topic_opinion_url(topic_id: next_topic)	
+			end
+		end
+
+		context 'All topics completed' do
+			before { session[:completed_topics] = [topic.id] }
+
+			it 'returns thank_you page' do
+				do_request
+				expect(response).to redirect_to thank_you_opinions_url
 			end
 		end
 	end
@@ -54,6 +64,13 @@ RSpec.describe OpinionsController, type: :controller do
 				it 'redirects to thank you page' do
 					do_request
 					expect(response).to redirect_to thank_you_opinions_url
+				end
+			end
+
+			context 'First topic' do
+				it 'is included in session' do
+					do_request
+					expect(session[:completed_topics]).to include(topic.id.to_s)
 				end
 			end
 		end
