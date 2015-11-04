@@ -3,7 +3,6 @@ class OpinionsController < ApplicationController
 	end
 
 	def create
-		#ap opinion_params, plain: true
 		topic = Topic.find(topic_id)
 		@opinion = topic.opinions.build(opinion_params)
 		if @opinion.save

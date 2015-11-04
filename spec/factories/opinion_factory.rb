@@ -1,4 +1,4 @@
-FactoryGirl::define do
+FactoryGirl.define do
 	factory :opinion do
 		content 'Ruby rocks!'
 		agree true
