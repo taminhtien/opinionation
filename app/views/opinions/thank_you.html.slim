@@ -1,3 +1,8 @@
-p.thank-you-message
-	| Thank you for submitting your opinion
-.clear-session = link_to "Clear session", clear_session_opinions_path
+.col-lg-9
+	.panel.panel-default
+		.panel-body
+			h1.thank-you-message
+				| Thank you for submitting your opinion
+			.clear-session = link_to "Clear session", clear_session_opinions_path, class: "btn btn-default"
+.col-lg-3
+	= render 'side_bar'

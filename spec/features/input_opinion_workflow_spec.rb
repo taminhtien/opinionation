@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Input Opinion Workflow', type: :feature do
 	def fill_in_the_form
-		fill_in 'Content', with: opinion
+		fill_in 'opinion_content', with: opinion
 		choose 'Yes'
 		click_on 'Create Opinion'
 	end
