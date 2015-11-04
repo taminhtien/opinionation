@@ -1,7 +1,7 @@
 - topic = @opinion.topic
 
 .topic-count "Topic ##{ topic.id }"
-.h1.topic-content = topic.content
+h1.topic-content = topic.content
 
 = simple_form_for @opinion, url: topic_opinions_path(topic_id: topic.id) do |f|
 	= f.input :content
