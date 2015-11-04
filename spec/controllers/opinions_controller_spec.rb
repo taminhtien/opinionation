@@ -57,4 +57,11 @@ RSpec.describe OpinionsController, type: :controller do
 			end
 		end
 	end
+
+	describe '#thank_you' do
+		it 'returns thank_you page' do
+			get :thank_you
+			expect(response).to render_template :thank_you
+		end
+	end
 end
