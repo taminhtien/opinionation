@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+[
+	'Is Ruby better than Python?',
+	'Should abortion be legal?',
+	'Should gay marriage be legal?',
+	'Are fat people lazy?',
+	'Is SASS better than LESS?',
+	'Is ReactJS better than AngularJS?'
+].each do |content|
+	Topic.where(content: content).first_or_create!
+end
