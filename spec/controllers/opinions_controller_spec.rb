@@ -66,13 +66,6 @@ RSpec.describe OpinionsController, type: :controller do
 					expect(response).to redirect_to thank_you_opinions_url
 				end
 			end
-
-			context 'First topic' do
-				it 'is included in session' do
-					do_request
-					expect(session[:completed_topics]).to include(topic.id.to_s)
-				end
-			end
 		end
 
 		context 'Failure' do
